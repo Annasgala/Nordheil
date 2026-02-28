@@ -1,0 +1,345 @@
+:root{
+  --bg0:#05070c;
+  --bg1:#0b1020;
+  --bg2:#0a0d14;
+  --ink:#dbe6ff;
+  --muted:rgba(219,230,255,.72);
+  --frost:#9fb8ff;
+  --ice:#3b5bdb;
+  --ice2:#7aa2ff;
+  --stroke:rgba(159,184,255,.18);
+  --glass:rgba(255,255,255,.06);
+  --shadow: 0 24px 80px rgba(0,0,0,.55);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  color:var(--ink);
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  overflow-x:hidden;
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(59,91,219,.28) 0%, transparent 55%),
+    radial-gradient(900px 500px at 80% 30%, rgba(122,162,255,.16) 0%, transparent 60%),
+    linear-gradient(to bottom, var(--bg1), var(--bg2), var(--bg0));
+  position:relative;
+}
+
+/* ===== ЛІС ФОНОМ + анімація (легкий рух) ===== */
+.has-forest::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image: url("forest.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(.55) contrast(1.05) saturate(.95);
+  transform: scale(1.06);
+  animation: forestDrift 26s ease-in-out infinite alternate;
+  z-index:-2;
+  pointer-events:none;
+}
+
+@keyframes forestDrift{
+  0%   { transform: scale(1.06) translate3d(-0.6%, -0.4%, 0); }
+  100% { transform: scale(1.10) translate3d(0.6%, 0.4%, 0); }
+}
+
+/* затемнення поверх лісу */
+.has-forest::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(1200px 800px at 50% 20%, rgba(0,0,0,.10), rgba(0,0,0,.68)),
+    linear-gradient(to bottom, rgba(5,7,12,.25), rgba(5,7,12,.85));
+  z-index:-1;
+  pointer-events:none;
+}
+
+/* ===== ГУСТИЙ ТУМАН (поверх затемнення, під снігом) ===== */
+body .wrap::before{
+  content:"";
+  position:fixed;
+  inset:-30%;
+  background:
+    radial-gradient(closest-side at 18% 28%, rgba(225,240,255,.20), transparent 58%),
+    radial-gradient(closest-side at 55% 42%, rgba(210,225,255,.18), transparent 66%),
+    radial-gradient(closest-side at 78% 62%, rgba(210,225,255,.16), transparent 72%),
+    radial-gradient(closest-side at 42% 78%, rgba(210,225,255,.14), transparent 75%),
+    radial-gradient(closest-side at 85% 25%, rgba(210,225,255,.12), transparent 70%);
+  filter: blur(55px);
+  opacity:.78;
+  animation: fogDrift 28s ease-in-out infinite alternate;
+  pointer-events:none;
+  z-index:-1;
+}
+
+@keyframes fogDrift{
+  0%{
+    transform: translate3d(-4%, -2%, 0) scale(1.05);
+  }
+  100%{
+    transform: translate3d(4%, 2%, 0) scale(1.12);
+  }
+}
+
+/* ===== Snow canvas ===== */
+#snow{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:0;
+  opacity:.85;
+}
+
+/* ===== Layout ===== */
+.wrap{
+  width:min(1050px, 92vw);
+  margin:0 auto;
+  padding:24px 0 72px;
+  position:relative;
+  z-index:1;
+}
+
+.hero{
+  padding:34px 22px 26px;
+  text-align:center;
+  border:1px solid var(--stroke);
+  background: linear-gradient(to bottom, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: var(--shadow);
+  border-radius: 22px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero--nord{ padding-top:42px; }
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:-60px -80px auto -80px;
+  height:220px;
+  background: radial-gradient(closest-side, rgba(122,162,255,.20), transparent 70%);
+  transform: rotate(-6deg);
+  pointer-events:none;
+}
+
+h1{
+  margin:14px 0 8px;
+  font-size: clamp(34px, 4vw, 54px);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #eaf1ff;
+}
+
+.subtitle{
+  margin:0 auto 22px;
+  max-width: 720px;
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+/* ===== Sigil / Crest ===== */
+.sigil{
+  width:78px;
+  height:78px;
+  margin: 2px auto 6px;
+  position:relative;
+  display:grid;
+  place-items:center;
+}
+.sigil--big{ width:96px; height:96px; }
+.sigil__ring{
+  position:absolute;
+  inset:0;
+  border-radius:999px;
+  border:1px solid rgba(159,184,255,.35);
+  box-shadow: 0 0 22px rgba(59,91,219,.22);
+}
+.sigil__ring::before,
+.sigil__ring::after{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius:999px;
+  border:1px dashed rgba(159,184,255,.22);
+  opacity:.9;
+}
+.sigil__ring::after{ inset:18px; opacity:.65; }
+.sigil__mark{
+  font-size: 34px;
+  color: var(--frost);
+  text-shadow: 0 0 16px rgba(122,162,255,.45);
+  transform: translateY(-1px);
+  user-select:none;
+}
+
+/* ===== Buttons / links ===== */
+.actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:1px solid rgba(59,91,219,.55);
+  background: linear-gradient(to bottom, rgba(59,91,219,.18), rgba(59,91,219,.06));
+  color: var(--ink);
+  padding: 12px 18px;
+  border-radius: 14px;
+  text-decoration:none;
+  cursor:pointer;
+  font-size: 15px;
+  letter-spacing:.6px;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 0 26px rgba(59,91,219,.30);
+  border-color: rgba(122,162,255,.75);
+}
+.btn--ghost{
+  background: transparent;
+  color: var(--frost);
+  border-color: rgba(159,184,255,.35);
+}
+.btn--ghost:hover{ background: rgba(255,255,255,.05); }
+
+/* ===== TOPBAR + DROPDOWN ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:16px;
+  padding:12px 14px;
+  border-radius:18px;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 18px 60px rgba(0,0,0,.25);
+  backdrop-filter: blur(6px);
+  overflow: visible;
+}
+
+.brand{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  border:1px solid rgba(159,184,255,.28);
+  color: var(--frost);
+  text-shadow: 0 0 14px rgba(122,162,255,.45);
+  background: rgba(255,255,255,.03);
+}
+
+.menu{ display:flex; align-items:center; gap:10px; }
+.navbtn{ padding:10px 14px; }
+
+.dropdown{
+  position:relative;
+  display:inline-block;
+}
+
+/* невидимий “місток” між кнопкою і меню — щоб hover не зривався */
+.dropdown::after{
+  content:"";
+  position:absolute;
+  left:-8px;
+  right:-8px;
+  top:100%;
+  height:14px;
+}
+
+.dropdown-menu{
+  position:absolute;
+  right:0;
+  top:100%;
+  margin-top:8px;
+  min-width: 210px;
+  padding:10px;
+  border-radius:16px;
+  border:1px solid rgba(159,184,255,.22);
+  background: rgba(10,13,20,.78);
+  box-shadow: 0 22px 80px rgba(0,0,0,.55);
+  backdrop-filter: blur(10px);
+  opacity:0;
+  transform: translateY(-6px);
+  pointer-events:none;
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 50;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown-menu:hover{
+  opacity:1;
+  transform: translateY(0);
+  pointer-events:auto;
+}
+
+.dropdown-item{
+  display:block;
+  padding:10px 12px;
+  border-radius:12px;
+  color: var(--ink);
+  text-decoration:none;
+  border:1px solid transparent;
+}
+
+.dropdown-item:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(122,162,255,.25);
+}
+
+/* ===== Cards / grid ===== */
+.card{
+  margin-top: 18px;
+  padding: 22px 22px;
+  border-radius: 18px;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,.05);
+  box-shadow: 0 18px 60px rgba(0,0,0,.35);
+  text-align:left;
+}
+.card h2{
+  margin:0 0 10px;
+  color: var(--frost);
+  letter-spacing: 1px;
+}
+.card p{ margin:0; color: var(--muted); line-height: 1.7; }
+
+.grid{
+  margin-top: 18px;
+  display:grid;
+  gap:16px;
+  grid-template-columns: repeat(12, 1fr);
+}
+.grid > .card{ grid-column: span 12; }
+@media (min-width: 860px){
+  .grid > .card{ grid-column: span 6; }
+}
+
+/* ===== Lists ===== */
+.list{
+  margin:0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.list span{ color: #eaf1ff; }
+
+/* ===== Footer ===== */
+.footer{
+  margin-top: 18px;
+  text-align:center;
+  color: rgba(219,230,255,.55);
+  font-size: 13px;
+  letter-spacing: .8px;
+}

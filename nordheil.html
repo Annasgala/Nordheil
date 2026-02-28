@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+
+  <title>Nordheil</title>
+
+  <!-- preload background -->
+  <link rel="preload" as="image" href="forest.jpg" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="page-nordheil has-forest">
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <main class="wrap">
+    <nav class="topbar" aria-label="Навігація">
+      <div class="brand" aria-label="Nordheil">ᚾ</div>
+
+      <div class="menu">
+        <div class="dropdown">
+          <button class="btn navbtn" type="button" aria-haspopup="true" aria-expanded="false">
+            Мій всесвіт ▾
+          </button>
+
+          <div class="dropdown-menu" role="menu" aria-label="Меню">
+            <a class="dropdown-item" role="menuitem" href="index.html">Головна</a>
+            <a class="dropdown-item" role="menuitem" href="nordheil.html">Nordheil</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero hero--nord">
+      <div class="sigil sigil--big" aria-hidden="true">
+        <div class="sigil__ring"></div>
+        <div class="sigil__mark">ᚾ</div>
+      </div>
+
+      <h1>Nordheil</h1>
+      <p class="subtitle">Імперія, де легітимність визначається не короною, а очима.</p>
+
+      <div class="actions">
+        <a class="btn btn--ghost" href="index.html">← Назад</a>
+        <a class="btn" href="#lore">Читати лор</a>
+      </div>
+    </header>
+
+    <section id="lore" class="grid">
+      <article class="card">
+        <h2>Священні Блакитні Очі</h2>
+        <p>Знак правлячої династії. Вони не “успадковуються” — вони обирають.</p>
+      </article>
+
+      <article class="card">
+        <h2>Ельхейм</h2>
+        <p>Лісова темрява імперії. Автономний кордон, меч і щит Півночі.</p>
+      </article>
+
+      <article class="card">
+        <h2>Кодекс</h2>
+        <ul class="list">
+          <li><span>Вірність</span> — не словам, а клятві.</li>
+          <li><span>Тиша</span> — краща за виправдання.</li>
+          <li><span>Сталь</span> — остаточний аргумент.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Хроніки</h2>
+        <p>Тут ми потім вставимо твій лор у “чистому” форматі для сайту (без 18+ сцени).</p>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <span>Nordheil endures.</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+
+  <title>Мій перший сайт</title>
+
+  <!-- preload background -->
+  <link rel="preload" as="image" href="forest.jpg" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="page-home has-forest">
+  <!-- Snow canvas -->
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <main class="wrap">
+    <!-- TOP NAV -->
+    <nav class="topbar" aria-label="Навігація">
+      <div class="brand" aria-label="Nordheil">ᚾ</div>
+
+      <div class="menu">
+        <div class="dropdown">
+          <button class="btn navbtn" type="button" aria-haspopup="true" aria-expanded="false">
+            Мій всесвіт ▾
+          </button>
+
+          <div class="dropdown-menu" role="menu" aria-label="Меню">
+            <a class="dropdown-item" role="menuitem" href="nordheil.html">Nordheil</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="sigil" aria-hidden="true">
+        <div class="sigil__ring"></div>
+        <div class="sigil__mark">ᚾ</div>
+      </div>
+
+      <h1>Привіт, реальний світ 🌍</h1>
+      <p class="subtitle">Тут починається мій шлях у вебі… і легенди Nordheil.</p>
+
+      <div class="actions">
+        <button class="btn" type="button" onclick="sayHello()">Натисни мене</button>
+        <a class="btn btn--ghost" href="nordheil.html">Перейти до Nordheil</a>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Нотатки</h2>
+      <p>Тут можна коротко написати, що ти вчиш та що додаси далі.</p>
+    </section>
+
+    <footer class="footer">
+      <span>© Nordheil Chronicles</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
